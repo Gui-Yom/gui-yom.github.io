@@ -6,25 +6,25 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/index.css">
 <body>
 
-  <!-- Side Navigation -->
-  <nav class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left w3-center" style="display:none" id="mySidebar">
-    <h1 class="w3-xxxlarge w3-text-theme">Menu</h1>
-    <button class="w3-bar-item w3-button" onclick="w3_close()">Close <i class="fa fa-remove"></i></button>
-    <a href="https://github.com/LimeiloN/arduino-serial" class="w3-bar-item w3-button">arduino-serial</a>
-    <a href="https://limeilon.github.io/RisqueClient" class="w3-bar-item w3-button">RisqueClient</a>
-    <a href="https://limeilon.github.io/RisqueServer" class="w3-bar-item w3-button">RisqueServer</a>
-    <a href="https://limeilon.github.io/RisqueScenarioEditor" class="w3-bar-item w3-button">RisqueScenarioEditor</a>
-  </nav>
+<!-- Side Navigation -->
+<nav class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left w3-center" style="display:none" id="mySidebar">
+  <h1 class="w3-xxxlarge w3-text-theme">Menu</h1>
+  <button class="w3-bar-item w3-button" onclick="sideNavHandler()">Close <i class="fa fa-remove"></i></button>
+  <a href="https://github.com/LimeiloN/arduino-serial" class="w3-bar-item w3-button">arduino-serial</a>
+  <a href="https://github.com/LimeiloN/RisqueClient" class="w3-bar-item w3-button">RisqueClient</a>
+  <a href="https://limeilon.github.io/RisqueScenarioEditor" class="w3-bar-item w3-button">RisqueScenarioEditor</a>
+  <a href="https://limeilon.github.io/RisqueServer" class="w3-bar-item w3-button">RisqueServer</a>
+</nav>
 
 <div zclass="w3-main" id="main">
-<!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
-  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>
+  <i onclick="sideNavHandler()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>
   <div class="w3-center">
   <h3>Here's come</h3>
-  <h1 class="w3-xxxlarge w3-animate-bottom">LimeiloN</h1>
+  <h2 class="w3-xxxlarge w3-animate-bottom">LimelioN</h2>
   </div>
 </header>
 
@@ -56,89 +56,37 @@
 <br />
 <!-- Footer -->
 <footer class="w3-container w3-theme-dark w3-padding-16">
-  <h6>Made with love by LimelioN</h6>
+  <h6>Made with &hearts; by LimelioN</h6>
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a> | Hosted with <a href="https://pages.github.com" >github-pages</a></p>
   <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/fr/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/fr/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/fr/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 France</a>.
 </footer>
 </div>
 
-<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+<!-- Some Scripts -->
 <script>
+
+var menuOpen = false;
 // Side navigation
+
+function sideNavHandler() {
+  if (menuOpen == true) {
+    w3_close();
+  } else {
+    w3_open();
+  }
+}
 function w3_open() {
+  menuOpen = true;
   document.getElementById("main").style.marginLeft = "25%";
   document.getElementById("mySidebar").style.width = "25%";
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("openNav").style.display = 'none';
 }
 function w3_close() {
+  menuOpen = false;
   document.getElementById("main").style.marginLeft = "0%";
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("openNav").style.display = "inline-block";
-}
-
-// Tabs
-function openCity(evt, cityName) {
-  var i;
-  var x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
-  }
-  var activebtn = document.getElementsByClassName("testbtn");
-  for (i = 0; i < x.length; i++) {
-      activebtn[i].className = activebtn[i].className.replace(" w3-dark-grey", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-dark-grey";
-}
-
-var mybtn = document.getElementsByClassName("testbtn")[0];
-mybtn.click();
-
-// Accordions
-function myAccFunc(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-
-// Slideshows
-var slideIndex = 1;
-
-function plusDivs(n) {
-slideIndex = slideIndex + n;
-showDivs(slideIndex);
-}
-
-function showDivs(n) {
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length} ;
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
-  }
-  x[slideIndex-1].style.display = "block";
-}
-
-showDivs(1);
-
-// Progress Bars
-function move() {
-  var elem = document.getElementById("myBar");
-  var width = 5;
-  var id = setInterval(frame, 10);
-  function frame() {
-    if (width == 100) {
-      clearInterval(id);
-    } else {
-      width++;
-      elem.style.width = width + '%';
-      elem.innerHTML = width * 1  + '%';
-    }
-  }
 }
 </script>
 
